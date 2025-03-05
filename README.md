@@ -2,6 +2,29 @@
 Language Model for Patronising and Condescending language recognition. \ 
 Coursework for NLP course @Imperial College London.
 
+## Data
+
+All data description can be found in the [original paper data description](data/README.txt).
+
+[Labeled Training Dataset](dontpatronizeme_pcl.tsv): contains paragraphs with a label from 0 (not containing PCL) to 4 (being highly patronizing or condescending) towards vulnerable communities.
+It contains one instance per line with the following columns:
+- <par_id>: unique id for each one of the paragraphs in the corpus.
+- <art_id>: the document id in the original NOW corpus (News on Web: https://www.english-corpora.org/now/).
+- <keyword>: the search term used to retrieve texts about a target community.
+- <country_code>: ISO Alpha-2 country code for the source media outlet.
+- <text>: the paragraph containing the keyword.
+- <label>: an integer between 0 and 4, which reflects the level of PCL as a result of combined annotations of two annotators, with 0 (No PCL), 1 (borderline PCL) and 2 (contains PCL). The combined annotations have been used in the following graded scale:
+
+0 -> Annotator 1 = 0 AND Annotator 2 = 0
+1 -> Annotator 1 = 0 AND Annotator 2 = 1 OR Annotator 1 = 1 AND Annotator 2 = 0
+2 -> Annotator 1 = 1 AND Annotator 2 = 1
+3 -> Annotator 1 = 1 AND Annotator 2 = 2 OR Annotator 1 = 2 AND Annotator 2 = 1
+4 -> Annotator 1 = 2 AND Annotator 2 = 2
+
+Following the experiments reported in the paper, we grouped the 5 numeric labels into the binary classification:
+- {0,1}   = No PCL (0)
+- {2,3,4} = PCL (1)
+
 ## Requirements
 
 The project is written in `python`. The following third party packages are required to ensure full project functionality:
@@ -22,17 +45,6 @@ All requirements (along with the used versions) can be found in the [requirement
 **Model Hyperparameters**
 - *parameter_name*: hyperparameter value and description.
 - ...
-
-
-## Data
-
-Data used for model training and testing:
-
-- *data_column*: data format/type
-- ...
-
-> *Example Input Fields*\
-> field_1, field_2, ...
 
 
 ## Example Usage
